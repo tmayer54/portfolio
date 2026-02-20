@@ -16,7 +16,7 @@ export default function Contact() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
     );
-    window.open(`mailto:music.music67@gmail.com?subject=${subject}&body=${body}`);
+    window.open(`mailto:thibault.mayer54@gmail.com?subject=${subject}&body=${body}`);
     setSent(true);
     setTimeout(() => setSent(false), 3000);
   };
@@ -50,7 +50,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <a href="mailto:music.music67@gmail.com" className="contact-email-btn">
+          <a href="mailto:thibault.mayer54@gmail.com" className="contact-email-btn">
             <FaEnvelope /> {t.contact.emailBtn}
           </a>
 
