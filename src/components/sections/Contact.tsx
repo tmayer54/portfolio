@@ -1,24 +1,43 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
-import { FaEnvelope, FaPaperPlane } from "react-icons/fa";
+import { FaEnvelope, FaPaperPlane, FaCheck } from "react-icons/fa";
 import "./Contact.css";
+
+const FORMSPREE_ID = "xqeddvkj";
 
 export default function Contact() {
   const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Construct mailto link as fallback
-    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.open(`mailto:thibault.mayer54@gmail.com?subject=${subject}&body=${body}`);
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+    setStatus("sending");
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -61,6 +80,7 @@ export default function Contact() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <input
               type="text"
+              name="name"
               placeholder={t.contact.formName}
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -68,20 +88,29 @@ export default function Contact() {
             />
             <input
               type="email"
+              name="email"
               placeholder={t.contact.formEmail}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
             />
             <textarea
+              name="message"
               placeholder={t.contact.formMessage}
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               required
             />
-            <button type="submit" className="btn btn-primary" disabled={sent}>
-              {sent ? "✓" : <><FaPaperPlane /> {t.contact.formSend}</>}
+            <button
+              type="submit"
+              className={`btn btn-primary${status === "sent" ? " btn-success" : ""}${status === "error" ? " btn-error" : ""}`}
+              disabled={status === "sending" || status === "sent"}
+            >
+              {status === "sending" && <><span className="spinner" /> Sending...</>}
+              {status === "sent" && <><FaCheck /> Sent!</>}
+              {status === "error" && <>Error — try again</>}
+              {status === "idle" && <><FaPaperPlane /> {t.contact.formSend}</>}
             </button>
           </form>
         </motion.div>
