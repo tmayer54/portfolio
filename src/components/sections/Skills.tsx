@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiTailwindcss,
-  SiNodedotjs, SiExpress, SiPostgresql, SiMysql, SiPrisma, SiMongodb,
-  SiGit, SiGithub, SiDocker, SiLinux, SiVercel, SiFigma,
-  SiUnity, SiSharp, SiPython, SiPhp,
+  SiNodedotjs, SiExpress, SiPostgresql, SiMysql,
+  SiGit, SiGithub, SiDocker, SiLinux, SiFigma,
+  SiUnity, SiSharp, SiPython, 
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import "./Skills.css";
@@ -39,9 +39,6 @@ const skillData: SkillCategory[] = [
       { name: "Express", icon: <SiExpress /> },
       { name: "PostgreSQL", icon: <SiPostgresql /> },
       { name: "MySQL", icon: <SiMysql /> },
-      { name: "Prisma", icon: <SiPrisma /> },
-      { name: "MongoDB", icon: <SiMongodb /> },
-      { name: "PHP", icon: <SiPhp /> },
     ],
   },
   {
@@ -51,7 +48,6 @@ const skillData: SkillCategory[] = [
       { name: "GitHub", icon: <SiGithub /> },
       { name: "Docker", icon: <SiDocker /> },
       { name: "Linux", icon: <SiLinux /> },
-      { name: "Vercel", icon: <SiVercel /> },
       { name: "Figma", icon: <SiFigma /> },
     ],
   },
