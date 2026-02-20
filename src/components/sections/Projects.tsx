@@ -4,20 +4,21 @@ import { useLanguage } from "../../context/LanguageContext";
 import { FaExternalLinkAlt, FaGamepad, FaGlobe, FaImages } from "react-icons/fa";
 import "./Projects.css";
 
+import synoligoImg from "../../assets/images/projects/Synoligo.png";
+import bonkImg from "../../assets/images/projects/Bonk.png";
+import pluginImg from "../../assets/images/projects/Plugin.png";
+import mobileGameImg from "../../assets/images/projects/MobileGame.png";
+
 type ProjectFilter = "all" | "web" | "game";
 
-interface ProjectImage {
-  src: string;
-  alt: string;
-}
-
-export interface ProjectMediaConfig {
-  [projectTitle: string]: ProjectImage[];
-}
-
-// You can add project images here. Place images in src/assets/images/projects/
-// and reference them with imports, or use public folder URLs.
-const projectMedia: ProjectMediaConfig = {};
+const projectImages: Record<string, string> = {
+  "Synoligo.com": synoligoImg,
+  "BonkCoin.com": bonkImg,
+  "Minecraft Server Plugins": pluginImg,
+  "Plugins Serveur Minecraft": pluginImg,
+  "Video Game Projects": mobileGameImg,
+  "Projets Jeux Vidéo": mobileGameImg,
+};
 
 export default function Projects() {
   const { t } = useLanguage();
@@ -62,7 +63,7 @@ export default function Projects() {
         <div className="projects-grid">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => {
-              const images = projectMedia[project.title] || [];
+              const image = projectImages[project.title];
               return (
                 <motion.div
                   key={project.title}
@@ -73,24 +74,16 @@ export default function Projects() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <div className="project-preview">
-                    {images.length > 0 ? (
-                      <div className="project-images">
-                        {images.slice(0, 3).map((img, idx) => (
-                          <img
-                            key={idx}
-                            src={img.src}
-                            alt={img.alt}
-                            className="project-thumb"
-                            onClick={() => setLightbox(img)}
-                          />
-                        ))}
-                        {images.length > 3 && (
-                          <div className="project-more-images">
-                            +{images.length - 3}
-                          </div>
-                        )}
-                      </div>
+                  <div
+                    className="project-preview"
+                    onClick={() => image && setLightbox({ src: image, alt: project.title })}
+                  >
+                    {image ? (
+                      <img
+                        src={image}
+                        alt={project.title}
+                        className="project-cover"
+                      />
                     ) : (
                       <div className="project-placeholder">
                         <FaImages size={32} />
