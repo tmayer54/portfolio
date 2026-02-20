@@ -1,0 +1,118 @@
+.involvement-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+
+.involvement-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #a855f7, transparent);
+}
+
+.involvement-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.involvement-dot {
+  position: absolute;
+  left: -2.55rem;
+  top: 1.2rem;
+  width: 34px;
+  height: 34px;
+  background: var(--bg);
+  border: 2px solid #a855f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a855f7;
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.involvement-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  margin-left: 1rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.involvement-card:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+.involvement-header h3 {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.involvement-org {
+  color: #a855f7;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.involvement-meta {
+  display: flex;
+  gap: 1.5rem;
+  color: #8888aa;
+  font-size: 0.85rem;
+  margin: 0.8rem 0;
+}
+
+.involvement-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.involvement-list {
+  list-style: none;
+  padding: 0;
+}
+
+.involvement-list li {
+  color: #b0b0cc;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding-left: 1.2rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.involvement-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #a855f7;
+}
+
+@media (max-width: 768px) {
+  .involvement-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .involvement-dot {
+    left: -2rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
+  .involvement-card {
+    padding: 1.2rem 1.5rem;
+    margin-left: 0.5rem;
+  }
+}

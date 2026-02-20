@@ -5,6 +5,8 @@ const en = {
     projects: "Projects",
     skills: "Skills",
     education: "Education",
+    languages: "Languages",
+    involvement: "Involvement",
     contact: "Contact",
   },
   hero: {
@@ -26,7 +28,7 @@ const en = {
     license: "Driver's License B",
   },
   experience: {
-    title: "Experience",
+    title: "Professional Experience",
     items: [
       {
         role: "Full-Stack Developer",
@@ -48,17 +50,6 @@ const en = {
           "Developed internal tools and applications for the research laboratory",
           "Worked on data processing and visualization solutions",
           "Collaborated with researchers on technical requirements",
-        ],
-      },
-      {
-        role: "Student Association President",
-        company: "UTBM",
-        period: "Feb 2022 – Sept 2023",
-        location: "Belfort, France",
-        description: [
-          "Led and managed a student association at the university",
-          "Organized events and coordinated team activities",
-          "Developed leadership and project management skills",
         ],
       },
     ],
@@ -123,6 +114,54 @@ const en = {
         period: "2020 – 2025",
         description:
           "Relevant coursework in Structural Design and Project Management",
+      },
+    ],
+  },
+  languages: {
+    title: "Languages",
+    items: [
+      {
+        language: "French",
+        level: "Native",
+        detail: "",
+      },
+      {
+        language: "English",
+        level: "Fluent",
+        detail: "6-month internship in San Francisco, USA",
+      },
+      {
+        language: "German",
+        level: "Basic",
+        detail: "",
+      },
+    ],
+  },
+  involvement: {
+    title: "Community Involvement",
+    items: [
+      {
+        role: "Student Association President",
+        organization: "UTBM",
+        period: "Feb 2022 – Sept 2023",
+        location: "Belfort, France",
+        description: [
+          "Led and managed a student association at the university",
+          "Planned and organized events for over 600 students with budgets exceeding 8,000\u00A0\u20AC",
+          "Coordinated team logistics and ensured smooth execution of all activities",
+        ],
+      },
+      {
+        role: "Student Orientation Coordinator",
+        organization: "UTBM",
+        period: "2022",
+        location: "Belfort, France",
+        description: [
+          "Directed and coordinated a team of 50 volunteers during the student welcome week",
+          "Managed an overall budget of over 20,000\u00A0\u20AC",
+          "Organized the reception and integration of incoming students",
+          "Strengthened skills in organizational planning, communication, and project coordination",
+        ],
       },
     ],
   },

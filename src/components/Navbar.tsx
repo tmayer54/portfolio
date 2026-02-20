@@ -34,31 +34,48 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   const links = [
     { href: "#about", label: t.nav.about },
     { href: "#experience", label: t.nav.experience },
     { href: "#projects", label: t.nav.projects },
     { href: "#skills", label: t.nav.skills },
     { href: "#education", label: t.nav.education },
+    { href: "#languages", label: t.nav.languages },
+    { href: "#involvement", label: t.nav.involvement },
     { href: "#contact", label: t.nav.contact },
   ];
 
   const handleClick = () => setMenuOpen(false);
 
   return (
-    <nav className={`navbar${scrolled ? " scrolled" : ""}`}>
-      <div className="navbar-inner">
-        <a href="#" className="navbar-logo">
-          TM<span className="accent">.</span>
-        </a>
+    <>
+      {/* Backdrop overlay for mobile menu — rendered outside navbar for full-screen coverage */}
+      {menuOpen && (
+        <div className="navbar-backdrop" onClick={() => setMenuOpen(false)} />
+      )}
 
-        <div className={`navbar-links${menuOpen ? " open" : ""}`}>
+      <nav className={`navbar${scrolled ? " scrolled" : ""}`}>
+        <div className="navbar-inner">
+          <a href="#" className="navbar-logo">
+            TM<span className="accent">.</span>
+          </a>
+
+          <div className={`navbar-links${menuOpen ? " open" : ""}`}>
           {links.map((link) => (
             <a key={link.href} href={link.href} onClick={handleClick}>
               {link.label}
             </a>
           ))}
+        </div>
 
+        {/* Right-side controls: lang select + burger — always visible */}
+        <div className="navbar-controls">
           <div className="lang-select" ref={langRef}>
             <button
               className="lang-select-btn"
@@ -88,12 +105,13 @@ export default function Navbar() {
               </div>
             )}
           </div>
-        </div>
 
-        <button className="navbar-burger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
-          {menuOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
-        </button>
+          <button className="navbar-burger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+            {menuOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
+          </button>
+        </div>
       </div>
     </nav>
+    </>
   );
 }
