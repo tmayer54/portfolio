@@ -1,0 +1,48 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-text p {
+  color: #b0b0cc;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.about-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #b0b0cc;
+  font-size: 0.95rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.about-info-item:hover {
+  border-color: var(--accent);
+}
+
+.about-info-icon {
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
